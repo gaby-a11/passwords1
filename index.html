@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+
+        <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Contraseñas Seguras</title>
+    <link rel="stylesheet" href="URL_DE_TU_CSS">
     <style>
-        /* Estilos generales */
         body {
             font-family: Arial, sans-serif;
-            background: url('fondo.jpg') no-repeat center center/cover;
+            background: url(https://github.com/gaby-a11/passwords1/blob/main/imagen%20de%20fondo.jpg?raw=true) no-repeat center center/cover;
             color: #fff;
             display: flex;
             justify-content: center;
@@ -18,12 +19,12 @@
         }
 
         .container {
-            background: rgba(44, 44, 44, 0.9);
+            background: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
             text-align: center;
-            width: 320px;
+            width: 350px;
         }
 
         .password-container {
@@ -99,69 +100,6 @@
         <button id="generate-btn">Generar Contraseña</button>
         <div class="strength" id="strength">Fortaleza: 🔴 Débil</div>
     </div>
-
-    <script>
-        document.getElementById("generate-btn").addEventListener("click", generatePassword);
-        document.getElementById("copy-btn").addEventListener("click", copyToClipboard);
-
-        const strengthIndicator = document.getElementById("strength");
-
-        function generatePassword() {
-            const length = document.getElementById("length").value;
-            const includeUppercase = document.getElementById("uppercase").checked;
-            const includeLowercase = document.getElementById("lowercase").checked;
-            const includeNumbers = document.getElementById("numbers").checked;
-            const includeSymbols = document.getElementById("symbols").checked;
-
-            const uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            const lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
-            const numberChars = "0123456789";
-            const symbolChars = "!@#$%^&*()_-+=<>?/{}[]";
-
-            let allowedChars = "";
-            if (includeUppercase) allowedChars += uppercaseChars;
-            if (includeLowercase) allowedChars += lowercaseChars;
-            if (includeNumbers) allowedChars += numberChars;
-            if (includeSymbols) allowedChars += symbolChars;
-
-            if (allowedChars === "") {
-                alert("Selecciona al menos una opción.");
-                return;
-            }
-
-            let password = "";
-            const array = new Uint32Array(length);
-            window.crypto.getRandomValues(array);
-            
-            for (let i = 0; i < length; i++) {
-                password += allowedChars[array[i] % allowedChars.length];
-            }
-
-            document.getElementById("password").value = password;
-            evaluateStrength(password);
-        }
-
-        function copyToClipboard() {
-            const passwordField = document.getElementById("password");
-            passwordField.select();
-            document.execCommand("copy");
-            alert("Contraseña copiada al portapapeles!");
-        }
-
-        function evaluateStrength(password) {
-            let score = 0;
-            if (/[A-Z]/.test(password)) score++;
-            if (/[a-z]/.test(password)) score++;
-            if (/[0-9]/.test(password)) score++;
-            if (/[^A-Za-z0-9]/.test(password)) score++;
-            if (password.length >= 12) score++;
-
-            let strengthText = "🔴 Débil";
-            if (score === 3) strengthText = "🟡 Media";
-            if (score >= 4) strengthText = "🟢 Fuerte";
-
-            strengthIndicator.textContent = `Fortaleza: ${strengthText}`;
-        }
-    </script>
+    <script src="URL_DE_TU_JS"></script>
 </body>
 </html>
